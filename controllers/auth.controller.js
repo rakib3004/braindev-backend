@@ -7,12 +7,7 @@ const contentNegotiation = require("../utils/content-negotiation.util");
 exports.registerUser = async (req, res, next) => {
 
   try {
-    // const body = req.body;
-    // const ValidRegistration = userValidationUtil.checkValidRegistration(body);
-    // if (!ValidRegistration.valid) {
-    //   throw new AppError(ValidRegistration.message, 400);
-    // }
-
+ 
     const registerUserResponse = await authService.registerUser(body);
 
     res.cookie("jwt", registerUserResponse.token);

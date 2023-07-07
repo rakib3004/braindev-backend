@@ -16,8 +16,8 @@ exports.registerUser = async (body) => {
 
 
 exports.loginUser = async (body) => {
-  const username = body.username;
-  const userResponse = await userService.getUserLoginInfo(username);
+  const email = body.email;
+  const userResponse = await userService.getUserLoginInfo(email);
 
   const password = body.password;
   const user = userResponse;
