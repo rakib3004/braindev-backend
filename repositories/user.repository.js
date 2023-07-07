@@ -31,25 +31,25 @@ exports.createUser = async (   fullname,
     residentialType,) => {
   try {
     const user = await User.create({
-        fullname:fullname
-     phoneNumber:phoneNumber
-     email:email
-     password:password
-     facultyName:facultyName
-     departmentName:departmentName
-     classRoll:classRoll
-     registrationNumber:registrationNumber
-     session:session
-     universityMeritPossitiion:universityMeritPossitiion
-     fatherName:fatherName
-     motherName:motherName
-     bloodGroup:bloodGroup
-     religion:religion
-     nationality:nationality
-     presentAddress:presentAddress
-     permanentAddress:permanentAddress
-     hallName:hallName
-     residentialType:residentialType
+     fullname:fullname,
+     phoneNumber:phoneNumber,
+     email:email,
+     password:password,
+     facultyName:facultyName,
+     departmentName:departmentName,
+     classRoll:classRoll,
+     registrationNumber:registrationNumber,
+     session:session,
+     universityMeritPossitiion:universityMeritPossitiion,
+     fatherName:fatherName,
+     motherName:motherName,
+     bloodGroup:bloodGroup,
+     religion:religion,
+     nationality:nationality,
+     presentAddress:presentAddress,
+     permanentAddress:permanentAddress,
+     hallName:hallName,
+     residentialType:residentialType,
 
     });
     return user;
@@ -58,25 +58,15 @@ exports.createUser = async (   fullname,
   }
 };
 
-exports.getUserByUsername = async (username) => {
+exports.getUserByPhoneNumber = async (username) => {
   const user = await User.findOne({
     where: {
-      username: username,
+      phoneNumber: phoneNumber,
     },
   });
   return user;
-
 };
 
-exports.getUserByUserId = async (userId) => {
-  const user = await User.findOne({
-    where: {
-      id: userId,
-    },
-  });
-  return user;
-
-};
 
 exports.updateUserPasswordByUsername = async (password,
   updatedAt,
@@ -87,15 +77,5 @@ exports.updateUserPasswordByUsername = async (password,
     { where: { username: username } }
   );
   return user;
-
-};
-
-exports.deleteUserByUsername = async (username) => {
-  const result = await User.destroy({
-    where: {
-      username: username,
-    },
-  });
-  return result;
 
 };

@@ -43,8 +43,6 @@ exports.createUser = async (body) => {
   const permanentAddress = body.permanentAddress;
   const hallName = body.hallName;
   const residentialType = body.residentialType;
-
-
   const password = await userValidationUtil.generateHashPassword(body.password);
 
   const newUser = await userRepository.createUser(
@@ -67,11 +65,11 @@ exports.createUser = async (body) => {
      permanentAddress,
      hallName,
      residentialType,
-  
   );
 
-  const dtoUser = new UserDTO(newUser);
-  return dtoUser;
+
+  // Need DTO
+  return newUser;
 
 };
 
