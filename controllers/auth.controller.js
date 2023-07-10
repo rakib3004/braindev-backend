@@ -25,7 +25,7 @@ exports.registerUser = async (req, res, next) => {
 exports.loginUser = async (req, res, next) => {
 
   try {
-    // const body = req.body;
+    const body = req.body;
     // const validLogin = userValidationUtil.checkValidLogin(body);
     // if (!validLogin.valid) {
     //   throw new AppError(validLogin.message, 400);

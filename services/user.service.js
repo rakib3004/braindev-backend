@@ -67,8 +67,7 @@ exports.getUserByEmail = async (emailParameter) => {
 
 
 
-exports.getUserLoginInfo = async (emailParameter) => {
-  const email = emailParameter.toLowerCase();
+exports.getUserLoginInfo = async (email) => {
   const user = await userRepository.getUserByEmail(email);
   if (!user) {
     throw new AppError(userNotFoundMessage, 404);
