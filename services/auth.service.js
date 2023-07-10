@@ -7,9 +7,9 @@ exports.registerUser = async (body) => {
 
   const newUserResponse = await userService.createUser(body);
 
-  const username = newUserResponse.user.username;
+  const email = newUserResponse.user.email;
   const token = await authUtil.generateJwtToken(
-    username
+    email
   );
   return { data: newUserResponse, token: token };
 };
@@ -28,8 +28,8 @@ exports.loginUser = async (body) => {
   );
 
   if (isValidPassword) {
-    const username = userResponse.username;
-    const token = await authUtil.generateJwtToken(username);
+    const email = userResponse.email;
+    const token = await authUtil.generateJwtToken(email);
     return token;
   }
   throw new AppError('Authentication Failed', 401);
