@@ -1,6 +1,6 @@
 const userRepository = require("../../repositories/user.repository");
 const { newUserInfo } = require("../databases/auth.database");
-const {User } = require("../../models/user.model");
+const User  = require("../../models/user.model");
 const { AppError, SequelizeValidationError } = require("../../utils/error.handler.util");
 
 describe("Testing User Repository: ", () => {
