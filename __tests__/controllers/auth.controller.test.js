@@ -10,7 +10,7 @@ describe("Testing Auth Controller: ", () => {
       jest.clearAllMocks();
     });
 
-    const  fullname  =  "Kazi Muktadir Ahmed";
+      const  fullname  =  "Kazi Muktadir Ahmed";
       const  phoneNumber  =  "01529349128";
       const  email =   "kazi@gmail.com";
       const  password  =  "ilovemycomputer2";
@@ -30,9 +30,7 @@ describe("Testing Auth Controller: ", () => {
       const  hallName  =  "Fazlul Haque Muslim Hall";
       const  residentialType  =  "Non-residential";
     it("registerUser: Register User Successfully and return access token", async () => {
-      
-
-      const req = {
+        const req = {
         body: {
           fullname: fullname,
           phoneNumber: phoneNumber,

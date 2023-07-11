@@ -57,7 +57,6 @@ exports.getUserByEmail = async (email) => {
     },
   });
 
-  console.log("user is here with this email");
   return user;
 };
 

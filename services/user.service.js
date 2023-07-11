@@ -1,7 +1,6 @@
 const userRepository = require("../repositories/user.repository");
 const UserDTO = require("../utils/user.dto");
 const userValidationUtil = require("../utils/user.validation.util");
-// const paginationUtil = require("../utils/pagination.util");
 const userNotFoundMessage = 'User not found';
 const { AppError } = require("../utils/error.handler.util");
 
@@ -53,8 +52,7 @@ exports.createUser = async (body) => {
   return dtoUser;
 };
 
-exports.getUserByEmail = async (emailParameter) => {
-  const email = emailParameter.toLowerCase();
+exports.getUserByEmail = async (email) => {
   const userResponse = await userRepository.getUserByEmail(email);
 
   if (!userResponse) {
