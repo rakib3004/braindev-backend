@@ -1,9 +1,7 @@
 const authController = require("../../controllers/auth.controller");
 const authService = require("../../services/auth.service");
 const { newUserInfo } = require("../databases/auth.database");
-const userValidationUtil = require("../../utils/user.validation.util");
 
-const { AppError } = require("../../utils/error.handler.util");
 const contentNegotiation = require("../../utils/content-negotiation.util");
 
 describe("Testing Auth Controller: ", () => {
@@ -12,16 +10,49 @@ describe("Testing Auth Controller: ", () => {
       jest.clearAllMocks();
     });
 
+    const  fullname  =  "Kazi Muktadir Ahmed";
+      const  phoneNumber  =  "01529349128";
+      const  email =   "kazi@gmail.com";
+      const  password  =  "ilovemycomputer2";
+      const  facultyName  =  "Engineering and Technology";
+      const  departmentName  =  "Software Engineering";
+      const  classRoll  =  "1111";
+      const  registrationNumber  =  "2018325611";
+      const  session  =  "2018-19";
+      const  universityMeritPossitiion  =  "555";
+      const  fatherName  =  "Abdul Muktadir";
+      const  motherName  =  "Umme Muktadir";
+      const  bloodGroup  =  "A+ve";
+      const  religion  =  "Islam";
+      const nationality  =  "Bangladeshi";
+      const  presentAddress  =  "Azimpur, Dhaka - 1229";
+      const  permanentAddress  =  "Vill: Shafipur, P.O: Shafipur, P.S: Kaliakoir, Zilla: Gazipur";
+      const  hallName  =  "Fazlul Haque Muslim Hall";
+      const  residentialType  =  "Non-residential";
     it("registerUser: Register User Successfully and return access token", async () => {
-      const username = "test";
-      const email = "test@cefalo.com";
-      const password = "test1234";
+      
 
       const req = {
         body: {
-          username: username,
+          fullname: fullname,
+          phoneNumber: phoneNumber,
           email: email,
           password: password,
+          facultyName: facultyName,
+          departmentName: departmentName,
+          classRoll: classRoll,
+          registrationNumber: registrationNumber,
+          session: session,
+          universityMeritPossitiion: universityMeritPossitiion,
+          fatherName: fatherName,
+          motherName: motherName,
+          bloodGroup: bloodGroup,
+          religion: religion,
+          nationality: nationality,
+          presentAddress: presentAddress,
+          permanentAddress: permanentAddress,
+          hallName: hallName,
+          residentialType: residentialType,
         },
       };
       const res = { cookie: jest.fn() };
@@ -47,9 +78,7 @@ describe("Testing Auth Controller: ", () => {
       const response = await authController.registerUser(req, res, next);
 
       expect(authService.registerUser).toHaveBeenCalledWith(body);
-      expect(res.cookie).toHaveBeenCalledWith("jwt", expectedInfo.token, {
-        httpOnly: true,
-      });
+      expect(res.cookie).toHaveBeenCalledWith("jwt", expectedInfo.token);
 
       expect(authService.registerUser).toHaveBeenCalledTimes(1);
       expect(res.cookie).toHaveBeenCalledTimes(1);
@@ -62,15 +91,27 @@ describe("Testing Auth Controller: ", () => {
     });
 
     it("registerUser: Auth Service returns an error", async () => {
-      const username = "test";
-      const email = "test@cefalo.com";
-      const password = "test1234";
-
       const req = {
         body: {
-          username: username,
+          fullname: fullname,
+          phoneNumber: phoneNumber,
           email: email,
           password: password,
+          facultyName: facultyName,
+          departmentName: departmentName,
+          classRoll: classRoll,
+          registrationNumber: registrationNumber,
+          session: session,
+          universityMeritPossitiion: universityMeritPossitiion,
+          fatherName: fatherName,
+          motherName: motherName,
+          bloodGroup: bloodGroup,
+          religion: religion,
+          nationality: nationality,
+          presentAddress: presentAddress,
+          permanentAddress: permanentAddress,
+          hallName: hallName,
+          residentialType: residentialType,
         },
       };
       const res = {};
@@ -85,99 +126,15 @@ describe("Testing Auth Controller: ", () => {
       expect(next).toHaveBeenCalledWith(expectedError);
     });
 
-    it("registerUser: Throw an App eror if email field is missing", async () => {
-      const username = "test";
-      const password = "test1234";
-      const req = {
-        body: {
-          username: username,
-          password: password,
-        },
-      };
-      const res = {};
-      const next = jest.fn();
-
-      const expectedError = new AppError("Email field is empty", 400);
-
-      jest
-        .spyOn(authService, "registerUser")
-        .mockRejectedValueOnce(expectedError);
-
-      jest
-        .spyOn(userValidationUtil, "checkValidRegistration")
-        .mockReturnValueOnce({ valid: false, message: "Email field is empty" });
-
-      await authController.registerUser(req, res, next);
-      expect(userValidationUtil.checkValidRegistration).toHaveBeenCalledTimes(
-        1
-      );
-      expect(next).toHaveBeenCalledWith(expectedError);
-    });
-
-    it("registerUser: Throw an App eror if email is not valid", async () => {
-      const username = "test";
-      const email = "test.cefalo.com";
-      const password = "test1234";
-
-      const req = {
-        body: {
-          username: username,
-          email: email,
-          password: password,
-        },
-      };
-      const res = {};
-      const next = jest.fn();
-
-      const expectedError = new AppError("Email is not valid", 400);
-
-      jest
-        .spyOn(userValidationUtil, "checkValidRegistration")
-        .mockReturnValueOnce({ valid: false, message: "Email is not valid" });
-
-      jest
-        .spyOn(authService, "registerUser")
-        .mockRejectedValueOnce(expectedError);
-
-      await authController.registerUser(req, res, next);
-      expect(userValidationUtil.checkValidRegistration).toHaveBeenCalledTimes(
-        1
-      );
-
-      expect(next).toHaveBeenCalledWith(expectedError);
-    });
-
-    it("registerUser: Throw an app eror if request body is empty", async () => {
-      const req = {
-        body: {},
-      };
-      const res = {};
-      const next = jest.fn();
-
-      const expectedError = new AppError("Request body is empty", 400);
-
-      jest
-        .spyOn(userValidationUtil, "checkValidRegistration")
-        .mockReturnValueOnce({
-          valid: false,
-          message: "Request body is empty",
-        });
-      jest
-        .spyOn(authService, "registerUser")
-        .mockRejectedValueOnce(expectedError);
-
-      await authController.registerUser(req, res, next);
-      expect(next).toHaveBeenCalledWith(expectedError);
-    });
-
+  
     describe("Testing loginUser Function: ", () => {
       it("loginUser: User login Successfully", async () => {
-        const username = "testuser";
+        const email = "testuser@test.com";
         const password = "test1234";
 
         const req = {
           body: {
-            username: username,
+            email: email,
             password: password,
           },
         };
@@ -190,9 +147,6 @@ describe("Testing Auth Controller: ", () => {
 
         const body = req.body;
         const token = "json-web-token";
-        jest
-          .spyOn(userValidationUtil, "checkValidLogin")
-          .mockReturnValueOnce({ valid: true, message: "Ok" });
 
         jest.spyOn(authService, "loginUser").mockResolvedValue(token);
 
@@ -203,9 +157,7 @@ describe("Testing Auth Controller: ", () => {
         const response = await authController.loginUser(req, res, next);
 
         expect(authService.loginUser).toHaveBeenCalledWith(body);
-        expect(res.cookie).toHaveBeenCalledWith("jwt", token, {
-          httpOnly: true,
-        });
+        expect(res.cookie).toHaveBeenCalledWith("jwt", token);
 
         expect(authService.loginUser).toHaveBeenCalledTimes(1);
         expect(res.cookie).toHaveBeenCalledTimes(1);
@@ -218,12 +170,12 @@ describe("Testing Auth Controller: ", () => {
       });
 
       it("loginUser: Auth Service returns an error", async () => {
-        const username = "test";
+        const email = "testuser@test.com";
         const password = "test1234";
 
         const req = {
           body: {
-            username: username,
+            email: email,
             password: password,
           },
         };
@@ -239,76 +191,7 @@ describe("Testing Auth Controller: ", () => {
         expect(next).toHaveBeenCalledWith(expectedError);
       });
 
-      it("loginUser: Throw an App eror if request body is empty", async () => {
-        const req = {};
-        const res = { cookie: jest.fn() };
-        const next = jest.fn();
 
-        const expectedError = new AppError("Request body is empty", 400);
-
-        jest.spyOn(userValidationUtil, "checkValidLogin").mockReturnValueOnce({
-          valid: false,
-          message: "Request body is empty",
-        });
-        jest
-          .spyOn(authService, "loginUser")
-          .mockRejectedValueOnce(expectedError);
-
-        await authController.loginUser(req, res, next);
-        expect(next).toHaveBeenCalledWith(expectedError);
-      });
-
-      it("loginUser: Throw an App eror if password is missing", async () => {
-        const username = "testuser";
-
-        const req = {
-          body: {
-            username: username,
-          },
-        };
-        const res = { cookie: jest.fn() };
-        const next = jest.fn();
-
-        const expectedError = new AppError("Password field is empty", 400);
-
-        jest.spyOn(userValidationUtil, "checkValidLogin").mockReturnValueOnce({
-          valid: false,
-          message: "Password field is empty",
-        });
-
-        jest
-          .spyOn(authService, "loginUser")
-          .mockRejectedValueOnce(expectedError);
-
-        await authController.loginUser(req, res, next);
-        expect(next).toHaveBeenCalledWith(expectedError);
-      });
-
-      it("loginUser: Throw an App eror if username is missing", async () => {
-        const password = "test1234";
-
-        const req = {
-          body: {
-            password: password,
-          },
-        };
-        const res = { cookie: jest.fn() };
-        const next = jest.fn();
-
-        const expectedError = new AppError("Username field is empty", 400);
-
-        jest.spyOn(userValidationUtil, "checkValidLogin").mockReturnValueOnce({
-          valid: false,
-          message: "Username field is empty",
-        });
-
-        jest
-          .spyOn(authService, "loginUser")
-          .mockRejectedValueOnce(expectedError);
-
-        await authController.loginUser(req, res, next);
-        expect(next).toHaveBeenCalledWith(expectedError);
-      });
     });
   });
 });

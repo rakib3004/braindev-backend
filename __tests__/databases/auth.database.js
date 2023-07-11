@@ -15,7 +15,7 @@ const newUserInfo = {
     religion : "Islam",
     nationality : "Bangladeshi",
     presentAddress : "Azimpur, Dhaka - 1229",
-    permanentAddress : "Vill: Shafipur, P.O: Shafipur, P.S: Kaliakoir, Zilla: Comilla",
+    permanentAddress : "Vill: Shafipur, P.O: Shafipur, P.S: Kaliakoir, Zilla: Gazipur",
     hallName : "Fazlul Haque Muslim Hall",
     residentialType : "Non-residential"
   };

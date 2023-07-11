@@ -1,7 +1,7 @@
 const userRepository = require("../../repositories/user.repository");
 const userService = require("../../services/user.service");
 const { AppError } = require("../../utils/error.handler.util");
-const { fullUserList } = require("../databases/user.database");
+const { newUserInfo } = require("../databases/auth.database");
 const UserDTO = require("../../DTO/user.dto");
 const userValidationUtil = require("../../utils/user.validation.util");
 
@@ -9,19 +9,55 @@ describe('Testing User Service: ', () => {
    
 
     describe('Testing createUser Function: ', () => {
+
+      
+    const  fullname  =  "Kazi Muktadir Ahmed";
+    const  phoneNumber  =  "01529349128";
+    const  email =   "kazi@gmail.com";
+    const  password  =  "ilovemycomputer2";
+    const  facultyName  =  "Engineering and Technology";
+    const  departmentName  =  "Software Engineering";
+    const  classRoll  =  "1111";
+    const  registrationNumber  =  "2018325611";
+    const  session  =  "2018-19";
+    const  universityMeritPossitiion  =  "555";
+    const  fatherName  =  "Abdul Muktadir";
+    const  motherName  =  "Umme Muktadir";
+    const  bloodGroup  =  "A+ve";
+    const  religion  =  "Islam";
+    const nationality  =  "Bangladeshi";
+    const  presentAddress  =  "Azimpur, Dhaka - 1229";
+    const  permanentAddress  =  "Vill: Shafipur, P.O: Shafipur, P.S: Kaliakoir, Zilla: Gazipur";
+    const  hallName  =  "Fazlul Haque Muslim Hall";
+    const  residentialType  =  "Non-residential";
+
         it('createUser: Create an user and return a user response: ', async () => {
 
-            const username = "test";
-            const email =  "test@cefalo.com";
-            const password = "test";
+     
           
-            const body = {
-                username: username,
-                email :email,
-                password :password,
-            };
+          const body = {
+            fullname: fullname,
+            phoneNumber: phoneNumber,
+            email: email,
+            password: password,
+            facultyName: facultyName,
+            departmentName: departmentName,
+            classRoll: classRoll,
+            registrationNumber: registrationNumber,
+            session: session,
+            universityMeritPossitiion: universityMeritPossitiion,
+            fatherName: fatherName,
+            motherName: motherName,
+            bloodGroup: bloodGroup,
+            religion: religion,
+            nationality: nationality,
+            presentAddress: presentAddress,
+            permanentAddress: permanentAddress,
+            hallName: hallName,
+            residentialType: residentialType,
+          };
                   
-          const user = new UserDTO(fullUserList[0]);
+          const user = new UserDTO(newUserInfo);
           const expectedResponse = user;
 
             jest
@@ -36,22 +72,27 @@ describe('Testing User Service: ', () => {
 
         it('createUser: Throw an error if the userRepository call fails', async () => {
 
-            const id = "16514651474";
-            const username = "test";
-            const email =  "test@cefalo.com";
-        
-            const password = "test";
-            const createdAt = "2023-04-01 09:59:20";
-            const updatedAt = "2023-04-01 09:59:20";
-
-            const body = {
-                id: id,
-                username: username,
-                email :email,
-                password :password,
-                createdAt :createdAt,
-                updatedAt :updatedAt,
-            };             
+          const body = {
+            fullname: fullname,
+            phoneNumber: phoneNumber,
+            email: email,
+            password: password,
+            facultyName: facultyName,
+            departmentName: departmentName,
+            classRoll: classRoll,
+            registrationNumber: registrationNumber,
+            session: session,
+            universityMeritPossitiion: universityMeritPossitiion,
+            fatherName: fatherName,
+            motherName: motherName,
+            bloodGroup: bloodGroup,
+            religion: religion,
+            nationality: nationality,
+            presentAddress: presentAddress,
+            permanentAddress: permanentAddress,
+            hallName: hallName,
+            residentialType: residentialType,
+          };    
         
             const expectedError = new Error("Internal Server Error");
       

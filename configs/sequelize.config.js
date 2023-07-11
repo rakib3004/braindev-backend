@@ -15,9 +15,9 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log(`${DB_HOST}:${DB_PORT} - Connection successful (${DB_USER})`);
+    //console.log(`${DB_HOST}:${DB_PORT} - Connection successful (${DB_USER})`);
   } catch (error) {
-    console.error(`${DB_HOST}:${DB_PORT} - Connection failed (${DB_USER}): ${error}`);
+    //console.error(`${DB_HOST}:${DB_PORT} - Connection failed (${DB_USER}): ${error}`);
   }
 })();
 

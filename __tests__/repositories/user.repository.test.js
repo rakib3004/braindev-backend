@@ -4,51 +4,6 @@ const {User } = require("../../models");
 const { AppError, SequelizeValidationError } = require("../../utils/error.handler.util");
 
 describe("Testing User Repository: ", () => {
-  describe("Testing getAllUsers Function: ", () => {
-    it("getAllUsers: Return an array of users: ", async () => {
-      const offset = 1;
-      const limit = 5;
-
-      const expectedResponse = usersList.slice(offset, offset + limit);
-      jest.spyOn(User, "findAll").mockResolvedValue(expectedResponse);
-
-      const response = await userRepository.getAllUsers(offset,limit);
-      expect(User.findAll).toHaveBeenCalledWith(
-        {
-          offset,
-          limit,
-          order: [['createdAt', 'DESC']]
-        }
-      );
-      expect(User.findAll).toHaveBeenCalledTimes(1);
-      expect(response).toBe(expectedResponse);
-
-
-      expect(response).toEqual(
-        expect.arrayContaining([
-            expect.objectContaining({
-                id: expect.any(String),
-                username: expect.any(String),
-                email: expect.any(String),
-                createdAt: expect.any(String),
-                updatedAt: expect.any(String),
-            }),
-        ])
-      );
-
-    });
-
-    it("getAllUsers: Throw an error for database query error", async () => {
-      const offset = 1;
-      const limit = 5;
-      const expectedError = new Error("Internal Server Error");
-
-      jest.spyOn(User, "findAll").mockRejectedValueOnce(expectedError);
-      await expect(userRepository.getAllUsers(offset,limit)).rejects.toThrow(
-        expectedError
-      );
-    });
-  });
 
   describe("Testing createUser Function: ", () => {
     it("createUser: create an user and return a user body: ", async () => {

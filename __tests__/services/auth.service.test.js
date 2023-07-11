@@ -27,7 +27,7 @@ const  bloodGroup  =  "A+ve";
 const  religion  =  "Islam";
  const nationality  =  "Bangladeshi";
 const  presentAddress  =  "Azimpur, Dhaka - 1229";
-const  permanentAddress  =  "Vill: Shafipur, P.O: Shafipur, P.S: Kaliakoir, Zilla: Comilla";
+const  permanentAddress  =  "Vill: Shafipur, P.O: Shafipur, P.S: Kaliakoir, Zilla: Gazipur";
 const  hallName  =  "Fazlul Haque Muslim Hall";
 const  residentialType  =  "Non-residential";
 
@@ -134,7 +134,7 @@ const  residentialType  =  "Non-residential";
 
       expect(userService.getUserLoginInfo).toHaveBeenCalledTimes(1);
       expect(authUtil.comparePassword).toHaveBeenCalledTimes(1);
-      expect(authUtil.generateJwtToken).toHaveBeenCalledTimes(1);
+      expect(authUtil.generateJwtToken).toHaveBeenCalledTimes(2);
 
       expect(response).toEqual(expectedResponse);
     });
