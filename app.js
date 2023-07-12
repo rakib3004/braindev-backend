@@ -1,6 +1,8 @@
 
 require("dotenv").config();
-require('./configs/mongoose.config')
+
+const connectToMongo = require('./configs/mongoose.config');
+connectToMongo();
 const express = require('express');
 const app = express();
 const indexRouter = require('./routes/index.route');
