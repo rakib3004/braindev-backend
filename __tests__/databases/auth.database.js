@@ -1,5 +1,4 @@
 const newUserInfo = {
-    id: "test-id-test",
     fullname : "Kazi Muktadir Ahmed",
     phoneNumber : "01529349128",
     email :  "kazi@gmail.com",
@@ -8,7 +7,7 @@ const newUserInfo = {
     classRoll : "1111",
     registrationNumber : "2018325611",
     session : "2018-19",
-    universityMeritPossitiion : "555",
+    universityMeritPosition : "555",
     fatherName : "Abdul Muktadir",
     motherName : "Umme Muktadir",
     bloodGroup : "A+ve",
@@ -31,7 +30,6 @@ const newUserInfo = {
     classRoll : "1111",
     registrationNumber : "2018325611",
     session : "2018-19",
-    universityMeritPossitiion : "555",
     fatherName : "Abdul Muktadir",
     motherName : "Umme Muktadir",
     bloodGroup : "A+ve",

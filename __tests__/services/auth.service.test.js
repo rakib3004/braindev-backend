@@ -20,7 +20,6 @@ const  departmentName  =  "Software Engineering";
 const  classRoll  =  "1111";
 const  registrationNumber  =  "2018325611";
 const  session  =  "2018-19";
-const  universityMeritPossitiion  =  "555";
 const  fatherName  =  "Abdul Muktadir";
 const  motherName  =  "Umme Muktadir";
 const  bloodGroup  =  "A+ve";
@@ -41,7 +40,6 @@ const  residentialType  =  "Non-residential";
         classRoll: classRoll,
         registrationNumber: registrationNumber,
         session: session,
-        universityMeritPossitiion: universityMeritPossitiion,
         fatherName: fatherName,
         motherName: motherName,
         bloodGroup: bloodGroup,

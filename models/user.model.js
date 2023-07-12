@@ -51,10 +51,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  universityMeritPosition: {
-    type: String,
-    required: true,
-  },
+
   fatherName: {
     type: String,
     required: true,
@@ -90,14 +87,6 @@ const userSchema = new mongoose.Schema({
   residentialType: {
     type: String,
     required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
   },
 });
 

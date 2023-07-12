@@ -10,7 +10,6 @@ exports.createUser = async (
   classRoll,
   registrationNumber,
   session,
-  universityMeritPossitiion,
   fatherName,
   motherName,
   bloodGroup,
@@ -22,7 +21,7 @@ exports.createUser = async (
   residentialType
 ) => {
   try {
-    const user = await User.create({
+    const singleUser =  new User({
       fullname: fullname,
       phoneNumber: phoneNumber,
       email: email,
@@ -32,7 +31,6 @@ exports.createUser = async (
       classRoll: classRoll,
       registrationNumber: registrationNumber,
       session: session,
-      universityMeritPossitiion: universityMeritPossitiion,
       fatherName: fatherName,
       motherName: motherName,
       bloodGroup: bloodGroup,
@@ -43,19 +41,18 @@ exports.createUser = async (
       hallName: hallName,
       residentialType: residentialType,
     });
-    return user;
+
+   const newUser = await singleUser.save();
+  return newUser;
+    
   } catch (error) {
-    new Error("Database Error when creating user");
+    console.log(error);
+   // throw new Error("Database Error when creating user");
   }
 };
 
 exports.getUserByEmail = async (email) => {
-  const user = await User.findOne({
-    where: {
-      email: email,
-    },
-  });
-
+  const user = await User.findOne({ email: email });
   return user;
 };
 
@@ -69,7 +66,7 @@ exports.updateUserPasswordByUsername = async (
   classRoll,
   registrationNumber,
   session,
-  universityMeritPossitiion,
+  universityMeritPosition,
   fatherName,
   motherName,
   bloodGroup,
@@ -80,18 +77,18 @@ exports.updateUserPasswordByUsername = async (
   hallName,
   residentialType
 ) => {
-  const user = await User.update(
+  const user = await User.findOneAndUpdate(
+    { email: email },
     {
       fullname: fullname,
       phoneNumber: phoneNumber,
-      email: email,
       password: password,
       facultyName: facultyName,
       departmentName: departmentName,
       classRoll: classRoll,
       registrationNumber: registrationNumber,
       session: session,
-      universityMeritPossitiion: universityMeritPossitiion,
+      universityMeritPosition: universityMeritPosition,
       fatherName: fatherName,
       motherName: motherName,
       bloodGroup: bloodGroup,
@@ -102,7 +99,7 @@ exports.updateUserPasswordByUsername = async (
       hallName: hallName,
       residentialType: residentialType,
     },
-    { where: { email: email } }
+    { new: true }
   );
   return user;
 };

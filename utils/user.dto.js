@@ -1,7 +1,6 @@
 class SingleUserDTO {
     constructor(user) {
       const userDtoSingleObject = {
-      id: user.id,
       fullname: user.fullname,
       phoneNumber: user.phoneNumber,
       email: user.email,
@@ -10,7 +9,6 @@ class SingleUserDTO {
       classRoll: user.classRoll,
       registrationNumber: user.registrationNumber,
       session: user.session,
-      universityMeritPossitiion: user.universityMeritPossitiion,
       fatherName: user.fatherName,
       motherName: user.motherName,
       bloodGroup: user.bloodGroup,

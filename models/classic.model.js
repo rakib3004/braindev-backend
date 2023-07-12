@@ -54,7 +54,7 @@ const User = sequelize.define('users', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    universityMeritPossitiion: {
+    universityMeritPosition: {
         type: DataTypes.STRING,
         allowNull: false,
     },

@@ -14,7 +14,7 @@ exports.registerUser = async (req, res, next) => {
     return contentNegotiation.sendResponseInContentNegotiation(req, res, 201, clientResponse);
 
   } catch (err) {
-    // console.error(err);
+    //console.error(err);
     next(err);
   }
 };
@@ -31,7 +31,7 @@ exports.loginUser = async (req, res, next) => {
     return contentNegotiation.sendResponseInContentNegotiation(req, res, 200, clientResponse);
 
   } catch (err) {
-    // console.error(err);
+    //console.error(err);
     next(err);
   }
 };

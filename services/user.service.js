@@ -14,7 +14,6 @@ exports.createUser = async (body) => {
   const classRoll = body.classRoll;
   const registrationNumber = body.registrationNumber;
   const session = body.session;
-  const universityMeritPossitiion = body.universityMeritPossitiion;
   const fatherName = body.fatherName;
   const motherName = body.motherName;
   const bloodGroup = body.bloodGroup;
@@ -36,7 +35,6 @@ exports.createUser = async (body) => {
      classRoll,
      registrationNumber,
      session,
-     universityMeritPossitiion,
      fatherName,
      motherName,
      bloodGroup,
