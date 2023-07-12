@@ -1,112 +1,106 @@
-const { DataTypes } = require('sequelize');
-const uuid = require('uuid');
-const sequelize = require('../configs/sequelize.config');
+const mongoose = require('mongoose');
 
-const User = sequelize.define('users', {
-    id: {
-        type: DataTypes.UUID,
-        defaultValue: () => uuid.v4(),
-        primaryKey: true,
+const userSchema = new mongoose.Schema({
+  fullname: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: function (value) {
+        return /^[0-9]{11,15}$/.test(value);
+      },
+      message: 'Invalid phone number format',
     },
- 
-    fullname: {
-        type: DataTypes.STRING(60),
-        allowNull: false,
-        unique: false,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: function (value) {
+        return /\S+@\S+\.\S+/.test(value);
+      },
+      message: 'Invalid email format',
     },
-    phoneNumber:  {
-            type: DataTypes.STRING(15),
-            allowNull: false,
-            unique: true,
-            validate: {
-                is: /^[0-9]{11,15}$/,
-            },
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true,
-            },
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    facultyName : {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    departmentName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    classRoll: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    registrationNumber: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    session: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    universityMeritPossitiion: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    fatherName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    motherName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    bloodGroup: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    religion: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    nationality: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    presentAddress: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    permanentAddress: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    hallName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    residentialType: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
- 
-    createdAt: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-    },
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  facultyName: {
+    type: String,
+    required: true,
+  },
+  departmentName: {
+    type: String,
+    required: true,
+  },
+  classRoll: {
+    type: String,
+    required: true,
+  },
+  registrationNumber: {
+    type: String,
+    required: true,
+  },
+  session: {
+    type: String,
+    required: true,
+  },
+  universityMeritPosition: {
+    type: String,
+    required: true,
+  },
+  fatherName: {
+    type: String,
+    required: true,
+  },
+  motherName: {
+    type: String,
+    required: true,
+  },
+  bloodGroup: {
+    type: String,
+    required: true,
+  },
+  religion: {
+    type: String,
+    required: true,
+  },
+  nationality: {
+    type: String,
+    required: true,
+  },
+  presentAddress: {
+    type: String,
+    required: true,
+  },
+  permanentAddress: {
+    type: String,
+    required: true,
+  },
+  hallName: {
+    type: String,
+    required: true,
+  },
+  residentialType: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-(async () => {
-    await User.sync({ force: false });
-})();
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

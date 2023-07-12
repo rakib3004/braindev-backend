@@ -1,5 +1,4 @@
 const User = require("../models/user.model");
-const { SequelizeValidationError } = require("../utils/error.handler.util");
 
 exports.createUser = async (
   fullname,
@@ -46,7 +45,7 @@ exports.createUser = async (
     });
     return user;
   } catch (error) {
-    throw new SequelizeValidationError(error, 400);
+    new Error("Database Error when creating user");
   }
 };
 
